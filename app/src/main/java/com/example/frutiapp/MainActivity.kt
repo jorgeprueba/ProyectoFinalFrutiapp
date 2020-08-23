@@ -1,12 +1,15 @@
 package com.example.frutiapp
 
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var numeroAleatorio = ((Math.random() * 10) + 1).toInt()
+    lateinit var mp : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +42,16 @@ class MainActivity : AppCompatActivity() {
                         if (numeroAleatorio == 4 || numeroAleatorio == 5 || numeroAleatorio == 6) {
                             id = resources.getIdentifier("uva", "drawable", packageName)
                             imageViewPersonaje.setImageResource(id)
-
                         }
-
+// Metodo para iniciar cancion de bienvenida
+        mp = MediaPlayer.create(this , R.raw.alphabet_song)
+        mp.start()
+        mp.isLooping
+    }
+// Metodo para que el usuario ingrese el nombre e inicie el juego
+    fun onButtonClicked(view: View) {
+        var nombre = editTextName.text.toString()
 
     }
+
 }
