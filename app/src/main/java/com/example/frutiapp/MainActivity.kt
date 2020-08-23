@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         val nombre = editTextName.text.toString()
 
         if (nombre != "") {
+            //Metodo para detener la cación una vez se ingrese el nombre
             mp.stop()
             mp.release()
 
