@@ -3,4 +3,5 @@
     <string name="manzana">Manzana</string>
     <string name="nombre">¿Cómo te llamas?</string>
     <string name="button">Jugar</string>
+    <string name="holamundo">Holamundo</string>
 </resources>

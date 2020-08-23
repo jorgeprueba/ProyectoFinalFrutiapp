@@ -1,15 +1,19 @@
 package com.example.frutiapp
 
+import android.app.Activity
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var numeroAleatorio = ((Math.random() * 10) + 1).toInt()
-    lateinit var mp : MediaPlayer
+    lateinit var mp: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +48,36 @@ class MainActivity : AppCompatActivity() {
                             imageViewPersonaje.setImageResource(id)
                         }
 // Metodo para iniciar cancion de bienvenida
-        mp = MediaPlayer.create(this , R.raw.alphabet_song)
+        mp = MediaPlayer.create(this, R.raw.alphabet_song)
         mp.start()
         mp.isLooping
     }
-// Metodo para que el usuario ingrese el nombre e inicie el juego
+
+    // Metodo para que el usuario ingrese el nombre e inicie el juego
     fun onButtonClicked(view: View) {
-        var nombre = editTextName.text.toString()
+        val nombre = editTextName.text.toString()
+
+        if (nombre != "") {
+            mp.stop()
+            mp.release()
+
+            val intent = Intent(this, MainActivity2Nivel1::class.java)
+            intent.putExtra("Clave", nombre)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Debe escribir su nombre", Toast.LENGTH_SHORT).show()
+
+            //metodo para que el teclado se active si el usuario no ingresa su nombre
+            editTextName.requestFocus()
+            val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(editTextName, InputMethodManager.SHOW_IMPLICIT)
+
+        }
+
+    }
+    //metodo para controlar el boton atras del telefono
+    override fun onBackPressed() {
+        Toast.makeText(this, "Metodo para controlar el boton", Toast.LENGTH_SHORT).show()
 
     }
 
