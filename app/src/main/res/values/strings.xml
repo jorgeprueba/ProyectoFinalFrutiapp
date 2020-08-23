@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FrutiApp</string>
+    <string name="manzana">Manzana</string>
+    <string name="nombre">¿Como te llamas?</string>
 </resources>
