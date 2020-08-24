@@ -3,5 +3,9 @@
     <string name="manzana">Manzana</string>
     <string name="nombre">¿Cómo te llamas?</string>
     <string name="button">Jugar</string>
-    <string name="holamundo">Holamundo</string>
+    <string name="jugador">Jugador</string>
+    <string name="totalscore">Scroe: 0</string>
+    <string name="vidas">Manzanas:</string>
+    <string name="respuesta">Respuesta</string>
+    <string name="botonsumar">Comprobar</string>
 </resources>

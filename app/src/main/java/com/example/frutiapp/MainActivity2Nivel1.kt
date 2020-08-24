@@ -11,7 +11,7 @@ class MainActivity2Nivel1 : AppCompatActivity() {
 
         val intent = intent
         val name = intent.getStringExtra("Clave")
-        textView.text = name
+        textViewNombre.text = name
 
     }
 }
