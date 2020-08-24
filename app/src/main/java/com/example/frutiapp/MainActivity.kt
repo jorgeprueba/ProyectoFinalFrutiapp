@@ -2,6 +2,7 @@ package com.example.frutiapp
 
 import android.app.Activity
 import android.content.Intent
+import android.database.Cursor
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -47,6 +48,28 @@ class MainActivity : AppCompatActivity() {
                             id = resources.getIdentifier("uva", "drawable", packageName)
                             imageViewPersonaje.setImageResource(id)
                         }
+
+        //Metodo para llamar la base de datos
+        val admin = AdminSQLiteOpenHelper(this, "BD",null,1)
+        //Metodo para abrir la base de datos
+        val BD = admin.writableDatabase
+        //Metodo para consultar
+        val consulta = BD.rawQuery(
+            "select * from puntaje where score = (select max(score) from puntaje)",null
+        )
+        //Metodo para consultar si existen datos
+        if (consulta.moveToFirst()){
+            val tempNombre = consulta.getString(0)
+            val temScore = consulta.getString(1)
+            textViewScore.text = ("Record: $tempNombre de $temScore")
+            //Metodo para cerrar la base de datos
+            BD.close()
+        }else{
+            BD.close()
+        }
+
+
+
 // Metodo para iniciar cancion de bienvenida
         mp = MediaPlayer.create(this, R.raw.alphabet_song)
         mp.start()
